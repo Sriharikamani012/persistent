@@ -1,0 +1,61 @@
+#TODO add the helm override without the AWS Credentials
+aws-ecr-creds:
+  aws:
+    accessKeyId: <SECRET VALUE>
+    secretAccessKey: <SECRET VALUE>
+
+ingress:
+  enabled: true
+  annotations: 
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/tls-acme: "true"      
+  hosts:
+    primaryHost: 
+      domain: luna.local
+    identityHost: 
+      domain: identity.luna.local
+    chromeleonIdpHost: 
+      domain: cmidp.luna.local
+    apiHost: 
+      domain: api.luna.local
+  tls: 
+   - secretName: luna-tls-secret   
+     hosts:
+       - luna.local  
+   - secretName: luna-identity-tls-secret   
+     hosts:       
+       - identity.luna.local     
+   - secretName: luna-cmidp-tls-secret   
+     hosts:           
+       - cmidp.luna.local   
+   - secretName: luna-api-tls-secret   
+     hosts:             
+       - api.luna.local         
+
+identitySecret: 
+  auth0:
+    clientID: <SECRET VALUE>
+    clientSecret: <SECRET VALUE>
+  cdcIdp:
+    clientID: <SECRET VALUE>
+    clientSecret: <SECRET VALUE>
+  cmIdp:
+    clientSecret: <SECRET VALUE>
+
+identityConfig: 
+  auth0:
+    url: https://...auth0.com...
+  cdcIdp:
+    url: https://...gigya.com...
+  cmUserManagement:
+    host: chromeleon.local # or IP of Chromeleon
+    port: 1325
+  registration:
+    senderMailFrom: luna@domain
+
+mailConfig:
+  smtp: 
+    host: smtp.local
+    port: 587
+    user: <SECRET VALUE>
+    pass: <SECRET VALUE>

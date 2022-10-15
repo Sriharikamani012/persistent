@@ -1,0 +1,696 @@
+displayName: Example Dash
+gridLayout:
+  columns: '2'
+  widgets:
+  - title: Node - Total, Request, Allocatable CPU cores
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_requests_cpu_cores"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_node_status_allocatable_cpu_cores"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_node_status_capacity_cpu_cores"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Node - Total memory, Memory usage, Allocatable memory
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_SUM
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/node_memory_MemTotal_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/node_memory_Active_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_node_status_allocatable_memory_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Node - Bytes received [MEAN], Bytes received [MAX]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_DELTA
+            filter: metric.type="external.googleapis.com/prometheus/node_network_receive_bytes_total"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              perSeriesAligner: ALIGN_MEAN
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_DELTA
+            filter: metric.type="external.googleapis.com/prometheus/node_network_receive_bytes_total"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              perSeriesAligner: ALIGN_MAX
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Node - Total inodes
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="kubernetes.io/anthos/kubelet_volume_stats_inodes"
+              resource.type="k8s_node" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="kubernetes.io/anthos/kubelet_volume_stats_inodes_free"
+              resource.type="k8s_node" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Container - Total CPU Cores limit, Cores request
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_limits_cpu_cores"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_requests_cpu_cores"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Container - CPU cores limit utilization[95/50/5 PERCENTILE]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_95
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_limits_cpu_cores"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_50
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_limits_cpu_cores"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_05
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_limits_cpu_cores"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Container - Memory limit utilization[90/50/5 PERCENTILE]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_95
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_limits_memory_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_50
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_limits_memory_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_05
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_limits_memory_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Container - Memory limit, Memory request
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/node_memory_MemTotal_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_requests_memory_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Container - Restart count [SUM]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_DELTA
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_status_restarts_total"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              perSeriesAligner: ALIGN_MEAN
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Container - Memory request utilization [95/50/5 PERCENTILE]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_95
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_requests_memory_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_50
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_requests_memory_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_05
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_pod_container_resource_requests_memory_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_cpu_usage_seconds_total (namespace)
+      [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              groupByFields:
+              - metric.label."namespace"
+              perSeriesAligner: ALIGN_RATE
+            filter: metric.type="kubernetes.io/anthos/container_cpu_usage_seconds_total"
+              resource.type="k8s_node" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - metric.label."namespace"
+              perSeriesAligner: ALIGN_MEAN
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Pod - Volume capacity
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_persistentvolume_capacity_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_MIN
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_persistentvolume_capacity_bytes"
+              resource.type="k8s_pod" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_MAX
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_persistentvolume_capacity_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_cpu_usage_seconds_total (Node) [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              groupByFields:
+              - resource.label."node_name"
+              perSeriesAligner: ALIGN_RATE
+            filter: metric.type="kubernetes.io/anthos/container_cpu_usage_seconds_total"
+              resource.type="k8s_node" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - resource.label."node_name"
+              perSeriesAligner: ALIGN_MEAN
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: Pod - Volume utilization [95/50/5 PERCENTILE]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_95
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_persistentvolumeclaim_resource_requests_storage_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_50
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_persistentvolumeclaim_resource_requests_storage_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_PERCENTILE_05
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="external.googleapis.com/prometheus/kube_persistentvolumeclaim_resource_requests_storage_bytes"
+              resource.type="k8s_container" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_cpu_usage_seconds_total for luna [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_RATE
+            filter: metric.type="kubernetes.io/anthos/container_cpu_usage_seconds_total"
+              resource.type="k8s_node" metric.label."namespace"="luna" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_MEAN
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_fs_inodes_total [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - resource.label."cluster_name"
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="kubernetes.io/anthos/container_fs_inodes_total" resource.type="k8s_node"
+              resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_cpu_usage_seconds_total for nginx [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_RATE
+            filter: metric.type="kubernetes.io/anthos/container_cpu_usage_seconds_total"
+              resource.type="k8s_node" metric.label."namespace"="nginx" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_MEAN
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_cpu_usage_seconds_total (kube-system) [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_RATE
+            filter: metric.type="kubernetes.io/anthos/container_cpu_usage_seconds_total"
+              resource.type="k8s_node" metric.label."namespace"="kube-system" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_MEAN
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_memory_usage_bytes for luna [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: STACKED_AREA
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="kubernetes.io/anthos/container_memory_usage_bytes"
+              resource.type="k8s_node" metric.label."namespace"="luna" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_cpu_usage_seconds_total (monitoring) [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_RATE
+            filter: metric.type="kubernetes.io/anthos/container_cpu_usage_seconds_total"
+              resource.type="k8s_node" metric.label."namespace"="monitoring" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_MEAN
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_memory_usage_bytes for nginx [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: STACKED_AREA
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="kubernetes.io/anthos/container_memory_usage_bytes"
+              resource.type="k8s_node" metric.label."namespace"="nginx" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_fs_inodes_total (Nodes)[MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - resource.label."node_name"
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="kubernetes.io/anthos/container_fs_inodes_total" resource.type="k8s_node"
+              resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: process_cpu_seconds_total [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: LINE
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              groupByFields:
+              - resource.label."cluster_name"
+              perSeriesAligner: ALIGN_RATE
+            filter: metric.type="kubernetes.io/anthos/process_cpu_seconds_total" resource.type="k8s_pod"
+              resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - resource.label."cluster_name"
+              perSeriesAligner: ALIGN_MEAN
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_memory_usage_bytes for monitoring [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: STACKED_AREA
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="kubernetes.io/anthos/container_memory_usage_bytes"
+              resource.type="k8s_node" metric.label."namespace"="monitoring" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR
+  - title: container_memory_usage_bytes for kube-system
+      [MEAN]
+    xyChart:
+      chartOptions:
+        mode: COLOR
+      dataSets:
+      - minAlignmentPeriod: 60s
+        plotType: STACKED_AREA
+        timeSeriesQuery:
+          timeSeriesFilter:
+            aggregation:
+              crossSeriesReducer: REDUCE_MEAN
+              groupByFields:
+              - metric.label."pod"
+              perSeriesAligner: ALIGN_MEAN
+            filter: metric.type="kubernetes.io/anthos/container_memory_usage_bytes"
+              resource.type="k8s_node" metric.label."namespace"="kube-system" resource.label."cluster_name"="luna-euwest2-k8s-001-eks"
+            secondaryAggregation: {}
+      timeshiftDuration: 0s
+      yAxis:
+        label: y1Axis
+        scale: LINEAR

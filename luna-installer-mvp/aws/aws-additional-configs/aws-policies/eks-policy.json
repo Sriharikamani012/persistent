@@ -1,0 +1,56 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			"Action": [
+				"eks:CreateCluster",
+				"eks:CreateFargateProfile",
+				"eks:CreateNodegroup",
+				"eks:DescribeCluster",
+				"eks:DescribeFargateProfile",
+				"eks:DescribeNodegroup",
+				"eks:DescribeUpdate",
+				"eks:ListFargateProfiles",
+				"eks:TagResource",
+				"eks:UpdateClusterConfig",
+				"eks:UpdateClusterVersion",
+				"eks:UpdateNodegroupConfig",
+				"eks:UpdateNodegroupVersion"
+			],
+			"Resource": "*"
+		},
+		{
+			"Sid": "DeletePermissions",
+			"Effect": "Allow",
+			"Action": [
+				"eks:DeleteCluster",
+				"eks:DeleteNodegroup",
+				"eks:UntagResource"
+			],
+			"Resource": "*",
+			"Condition": {
+				"StringEquals": {
+					"aws:ResourceTag/Managed by": "Luna Platform Terraform Installer",
+					"aws:ResourceTag/Project": "Luna"
+				}
+			}
+		},
+		{
+			"Sid": "ListPermissions",
+			"Effect": "Allow",
+			"Action": [
+				"eks:ListClusters",
+				"eks:ListNodegroups",
+				"eks:ListTagsForResource"
+			],
+			"Resource": "*",
+			"Condition": {
+				"StringEquals": {
+					"aws:ResourceTag/Managed by": "Luna Platform Terraform Installer",
+					"aws:ResourceTag/Project": "Luna"
+				}
+			}
+		}
+	]
+}

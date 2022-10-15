@@ -1,0 +1,6 @@
+{
+ "us-east-2": "ami-0b9679f9509e275c3",
+ "us-east-1": "ami-08ca58e9808b44877",
+ "us-west-1": "ami-0a73a448ba7deb389",
+ "us-west-2": "ami-04541b9b52aaf7394"
+}

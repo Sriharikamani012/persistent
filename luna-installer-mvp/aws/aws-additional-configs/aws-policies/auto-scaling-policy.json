@@ -1,0 +1,63 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+	   {"Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:AttachInstances",
+                "autoscaling:CreateAutoScalingGroup",
+                "autoscaling:CreateLaunchConfiguration",
+                "autoscaling:CreateOrUpdateTags",
+                "autoscaling:DescribeAccountLimits",
+                "autoscaling:DescribeAdjustmentTypes",
+                "autoscaling:DescribeAutoScalingGroups",
+                "autoscaling:DescribeAutoScalingInstances",
+                "autoscaling:DescribeAutoScalingNotificationTypes",
+                "autoscaling:DescribeInstanceRefreshes",
+                "autoscaling:DescribeLaunchConfigurations",
+                "autoscaling:DescribeLifecycleHooks",
+                "autoscaling:DescribeLifecycleHookTypes",
+                "autoscaling:DescribeLoadBalancers",
+                "autoscaling:DescribeLoadBalancerTargetGroups",
+                "autoscaling:DescribeMetricCollectionTypes",
+                "autoscaling:DescribeNotificationConfigurations",
+                "autoscaling:DescribeScalingActivities",
+                "autoscaling:DescribeScalingProcessTypes",
+                "autoscaling:DescribeScheduledActions",
+                "autoscaling:DescribeTags",
+                "autoscaling:DescribeTerminationPolicyTypes",
+                "autoscaling:DetachInstances",
+                "autoscaling:SetDesiredCapacity",
+                "autoscaling:UpdateAutoScalingGroup"
+
+            ],
+            "Resource": "*"
+        },        
+    {
+            "Sid": "AutoScalingDelete",
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:DeleteAutoScalingGroup", 
+                "autoscaling:SuspendProcesses"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:ResourceTag/Project": "Luna",
+                    "aws:ResourceTag/Managed by": "Luna Platform Terraform Installer"
+                }
+            }
+        },        
+        {
+                "Sid": "AutoScalingDeleteLaunchConfig",
+                "Effect": "Allow",
+                "Action": [
+                    "autoscaling:DeleteLaunchConfiguration"
+                ],
+                "Resource": "*"
+               
+                
+            }
+
+  ]
+}

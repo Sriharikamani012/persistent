@@ -1,0 +1,27 @@
+title: anthos_role
+description: IAM role for connecting Anthos
+stage: ALPHA
+includedPermissions:
+- Gkehub.endpoints.connect
+- Gkehub.memberships.create 
+- Gkehub.memberships.delete
+- Gkehub.memberships.generateConnectManifest
+- Gkehub.memberships.get
+- Gkehub.memberships.list
+- Gkehub.operations.get
+- Iam.serviceAccounts.list
+- Logging.logEntries.create
+- Monitoring.dashboards.create
+- Monitoring.dashboards.list
+- Monitoring.dashboards.delete
+- Monitoring.metricDescriptors.create
+- Monitoring.metricDescriptors.get
+- Monitoring.metricDescriptors.list
+- Monitoring.monitoredResourceDescriptors.get
+- Monitoring.monitoredResourceDescriptors.list
+- Monitoring.timeSeries.create
+- Resourcemanager.projects.get
+- Resourcemanager.projects.getIamPolicy
+- Resourcemanager.projects.setIamPolicy 
+- Serviceusage.services.enable
+- Serviceusage.services.list

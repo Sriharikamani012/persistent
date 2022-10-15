@@ -1,0 +1,11 @@
+{
+  "infra-version-suffix": 1,
+  "k8s-version" : "1.16.15", 
+  "cluster-tags":{
+    "environment": "test",
+    "project": "luna",
+    "customer": "customer",
+    "managed-by": "luna-platform-terraform-installer",
+    "notes": "do-not-delete"
+  }
+}

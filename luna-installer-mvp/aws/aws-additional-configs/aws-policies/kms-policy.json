@@ -1,0 +1,31 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+	   {"Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "kms:CreateGrant",
+                "kms:CreateKey",
+                "kms:DescribeKey",
+                "kms:EnableKey",
+                "kms:Encrypt",
+                "kms:GenerateDataKey",
+                "kms:GenerateDataKeyPair",
+                "kms:GetKeyPolicy",
+                "kms:GetKeyRotationStatus",
+                "kms:ListResourceTags",
+                "kms:ReEncryptTo"                
+            ],
+            "Resource": "*"
+        },
+        {"Sid": "DeletePermissions",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt",
+                "kms:DisableKeyRotation", 
+                "kms:ScheduleKeyDeletion"
+            ],
+            "Resource": "*"
+        }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+	"customer-name": "ACME",
+	"custom-dns": ".aws.lunapp.info",
+	"aws-account-num": "741032333307",
+	"service-account-id": "arn:aws:iam::741032333307:user/terraform_tfs_poc",
+	"service-account-name": "terraform_tfs_poc",
+	"kms-master-key-id": "arn:aws:kms:us-east-2:741032333307:key/d11ff631-2aa7-4228-b0bf-9077903ed8c4",
+	"vpc-cidr": "10.0.0.0/16",
+	"privateSubnet1": "10.0.1.0/24",
+	"privateSubnet2": "10.0.2.0/24",
+	"privateSubnet3": "10.0.3.0/24",
+	"publicSubnet1": "10.0.4.0/24",
+	"publicSubnet2": "10.0.5.0/24",
+	"publicSubnet3": "10.0.6.0/24",
+	"vpc-id": "vpcIdABCD",
+	"region": "us-east-2", 
+	"certificate": "secretNameABCD",
+	"certKey": "secretValueABCD", 
+	"objectStorageName": ""
+}

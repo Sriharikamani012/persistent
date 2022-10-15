@@ -1,0 +1,469 @@
+{
+    "Description": "Thermo Fisher Scientific (TFS) Luna Platform AWS service account IAM resources",
+    "Resources": {
+        "TfsLunaAutoscalingPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-autoscaling",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "autoscaling:AttachInstances",
+                                "autoscaling:CreateAutoScalingGroup",
+                                "autoscaling:CreateLaunchConfiguration",
+                                "autoscaling:CreateOrUpdateTags",
+                                "autoscaling:Describe*",
+                                "autoscaling:DetachInstances",
+                                "autoscaling:SetDesiredCapacity",
+                                "autoscaling:UpdateAutoScalingGroup"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "autoscaling:DeleteAutoScalingGroup",
+                                "autoscaling:SuspendProcesses"
+                            ],
+                            "Resource": "*",
+                            "Condition": {
+                                "StringEquals": {
+                                    "aws:ResourceTag/Project": "Luna",
+                                    "aws:ResourceTag/Managed by": "Luna Platform Terraform Installer"
+                                }
+                            }
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "autoscaling:DeleteLaunchConfiguration"
+                            ],
+                            "Resource": "*"
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaEC2Policy1": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-ec2-1",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:AllocateAddress",
+                                "ec2:AssignPrivateIpAddresses",
+                                "ec2:Associate*",
+                                "ec2:Attach*",
+                                "ec2:AuthorizeSecurityGroupEgress",
+                                "ec2:AuthorizeSecurityGroupIngress"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:Create*"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:Delete*",
+                                "ec2:TerminateInstances",
+                                "ec2:ReleaseAddress"
+                            ],
+                            "Resource": "*"
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaEC2Policy2": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-ec2-2",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:Delete*",
+                                "ec2:TerminateInstances",
+                                "ec2:ReleaseAddress"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:Describe*"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:DetachInternetGateway",
+                                "ec2:DetachNetworkInterface",
+                                "ec2:DetachVolume",
+                                "ec2:DisassociateAddress",
+                                "ec2:DisassociateIamInstanceProfile",
+                                "ec2:DisassociateRouteTable",
+                                "ec2:DisassociateSubnetCidrBlock",
+                                "ec2:DisassociateVpcCidrBlock"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:Get*"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ec2:ImportKeyPair",
+                                "ec2:ModifySnapshotAttribute",
+                                "ec2:ModifySubnetAttribute",
+                                "ec2:ModifyVpcAttribute",
+                                "ec2:ModifyVpcEndpoint",
+                                "ec2:ModifyVpcEndpointServicePermissions",
+                                "ec2:ResetSnapshotAttribute",
+                                "ec2:RevokeSecurityGroupEgress",
+                                "ec2:RevokeSecurityGroupIngress",
+                                "ec2:RunInstances",
+                                "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
+                                "ec2:UpdateSecurityGroupRuleDescriptionsIngress"
+                            ],
+                            "Resource": "*"
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaEKSPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-eks",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "eks:Create*",
+                                "eks:Describe*",
+                                "eks:List*",
+                                "eks:TagResource",
+                                "eks:UpdateClusterConfig",
+                                "eks:UpdateClusterVersion",
+                                "eks:UpdateNodegroupConfig",
+                                "eks:UpdateNodegroupVersion"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "eks:DeleteCluster",
+                                "eks:DeleteNodegroup",
+                                "eks:UntagResource"
+                            ],
+                            "Resource": "*",
+                            "Condition": {
+                                "StringEquals": {
+                                    "aws:ResourceTag/Managed by": "Luna Platform Terraform Installer",
+                                    "aws:ResourceTag/Project": "Luna"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaIAMPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-iam",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "iam:AddRoleToInstanceProfile",
+                                "iam:AttachRolePolicy",
+                                "iam:CreateInstanceProfile",
+                                "iam:CreateOpenIDConnectProvider",
+                                "iam:CreatePolicy",
+                                "iam:CreatePolicyVersion",
+                                "iam:CreateRole",
+                                "iam:CreateServiceLinkedRole",
+                                "iam:DeleteInstanceProfile",
+                                "iam:DeleteOpenIDConnectProvider",
+                                "iam:DeletePolicy",
+                                "iam:DeleteRole",
+                                "iam:DeleteRolePolicy",
+                                "iam:DeleteServiceLinkedRole",
+                                "iam:DeleteSSHPublicKey",
+                                "iam:DetachRolePolicy",
+                                "iam:Get*",
+                                "iam:List*",
+                                "iam:PassRole",
+                                "iam:PutRolePolicy",
+                                "iam:RemoveRoleFromInstanceProfile",
+                                "iam:TagRole",
+                                "iam:UntagRole",
+                                "iam:UpdateAssumeRolePolicy",
+                                "iam:UpdateSSHPublicKey",
+                                "iam:UploadSSHPublicKey"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "iam:DeleteInstanceProfile",
+                                "iam:DetachRolePolicy",
+                                "iam:UntagRole",
+                                "iam:DeleteRolePolicy",
+                                "iam:RemoveRoleFromInstanceProfile",
+                                "iam:DeletePolicy",
+                                "iam:DeleteRole",
+                                "iam:DeleteServiceLinkedRole",
+                                "iam:DeleteOpenIDConnectProvider"
+                            ],
+                            "Resource": "*",
+                            "Condition": {
+                                "StringEquals": {
+                                    "iam:ResourceTag/Managed by": "Luna Platform Terraform Installer",
+                                    "iam:ResourceTag/Project": "Luna"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaKMSPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-kms",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "kms:CreateGrant",
+                                "kms:CreateKey",
+                                "kms:DescribeKey",
+                                "kms:EnableKey",
+                                "kms:Encrypt",
+                                "kms:GenerateDataKey",
+                                "kms:GenerateDataKeyPair",
+                                "kms:GetKeyPolicy",
+                                "kms:GetKeyRotationStatus",
+                                "kms:ListResourceTags",
+                                "kms:ReEncryptTo"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "kms:Decrypt",
+                                "kms:DisableKeyRotation",
+                                "kms:ScheduleKeyDeletion"
+                            ],
+                            "Resource": "*"
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaLogsPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-logs",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "logs:CreateLogGroup",
+                                "logs:CreateLogStream",
+                                "logs:DeleteLogGroup",
+                                "logs:Describe*",
+                                "logs:PutLogEvents",
+                                "logs:PutRetentionPolicy",
+                                "logs:List*"
+                            ],
+                            "Resource": "*"
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaRdsPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-rds",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "rds:AddTagsToResource",
+                                "rds:Describe*",
+                                "rds:List*",
+                                "rds:Create*"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "rds:Delete*"
+                            ],
+                            "Resource": "*",
+                            "Condition": {
+                                "StringEquals": {
+                                    "aws:ResourceTag/Project": "Luna",
+                                    "aws:ResourceTag/Managed by": "Luna Platform Terraform Installer"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaS3Policy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-s3",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "s3:Delete*"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "s3:CreateBucket",
+                                "s3:Get*",
+                                "s3:List*",
+                                "s3:Put*"
+                            ],
+                            "Resource": "*"
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaSTSPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "tfs-luna-sts",
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "sts:AssumeRole",
+                                "sts:GetCallerIdentity"
+                            ],
+                            "Resource": "*"
+                        }
+                    ]
+                },
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        },
+        "TfsLunaServiceAccountGroup": {
+            "Type": "AWS::IAM::Group",
+            "Properties": {
+                "GroupName": "tfs-luna-sa"
+            }
+        },
+        "TfsLunaServiceAccountUser": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "UserName": "tfs-luna-sa",
+                "Groups": [
+                    {
+                        "Ref": "TfsLunaServiceAccountGroup"
+                    }
+                ]
+            }
+        }
+    }
+}

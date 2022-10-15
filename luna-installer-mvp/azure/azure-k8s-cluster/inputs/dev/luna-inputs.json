@@ -1,0 +1,11 @@
+{
+"infra-version-suffix": 1,
+"k8s-version" : "1.17", 
+"cluster-tags":{
+    "Environment": "test",
+    "Project": "Luna",
+    "Customer": "",
+    "Managed by": "Luna Platform Terraform Installer",
+    "Notes": "DO NOT DELETE"
+  }
+}

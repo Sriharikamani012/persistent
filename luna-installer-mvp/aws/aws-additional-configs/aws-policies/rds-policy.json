@@ -1,0 +1,43 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "rds:AddTagsToResource",
+                "rds:CreateDBParameterGroup",
+                "rds:DescribeDBInstanceAutomatedBackups",
+                "rds:DescribeDBSubnetGroups",
+                "rds:DescribeDBParameterGroups",
+                "rds:CreateOptionGroup",
+                "rds:CreateDBSubnetGroup",
+                "rds:ListTagsForResource",
+                "rds:CreateDBCluster",
+                "rds:CreateDBInstance",
+                "rds:DescribeDBInstances",
+                "rds:DescribeDBParameters",
+                "rds:CreateDBInstanceReadReplica",
+                "rds:DescribeOptionGroups"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "rds:DeleteDBSubnetGroup",
+                "rds:DeleteOptionGroup",
+                "rds:DeleteDBParameterGroup",
+                "rds:DeleteDBInstance"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:ResourceTag/Project": "Luna",
+                    "aws:ResourceTag/Managed by": "Luna Platform Terraform Installer"
+                }
+            }
+        }
+    ]
+}

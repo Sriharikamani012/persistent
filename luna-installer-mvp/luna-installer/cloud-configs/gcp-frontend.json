@@ -1,0 +1,17 @@
+{
+	"customerName": "customer-name",
+    "domainName": "custom-dns",
+    "serviceAccountCreds": "service_account_creds",
+    "kmsMasterKeyId": "kms-master-key-id",
+    "region": "region",
+    "zone": "zone",
+	"gcpProjectId": "gcp_project_id",
+	"vpcCidr": "vpc-cidr",
+    "masterPrivateClusterIpv4": "master-private-cluster-ipv4",
+    "secretName": "secretName",
+	"secretValue": "secretValue",
+    "certificate": "certificate",
+    "certKey": "certKey" , 
+    "vpcName": "vpc-name",
+    "vpcSubnetName": "vpc-subnet-name"
+}

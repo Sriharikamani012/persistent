@@ -1,0 +1,17 @@
+{
+	"customerName": "customer-name",
+    "subscriptionId": "subscription_id",
+    "domainName": "custom-dns",
+	"region": "region",
+	"gcpProjectId": "gcp_project_id",
+	"managementSa": "management_sa",	
+	"vpcId": "vpc-id",
+	"vpcCidr": "vpc-cidr",
+	"secondaryVpcCidr": "secondary-vpc-cidr",
+	"secondarySubnetCidr": "secondary-subnet-cidr",
+	"secretName": "secretName",
+	"secretValue": "secretValue", 
+	"certificate": "certificate",
+	"certKey": "certKey", 
+	"objectStorageName": "objectStorageName"
+}

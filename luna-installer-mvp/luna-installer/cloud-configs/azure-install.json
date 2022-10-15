@@ -1,0 +1,12 @@
+{
+	"customer-name": "ncis",
+    "subscription_id": "7614c3db-32cd-43a7-9847-05860bf23ef7",
+    "custom-dns": "*.azure.lunapp.info",
+	"region": "eastus2",
+	"vpc-id": "vpc-0158c0a61f62aede0",
+	"vpc-cidr": "10.0.0.0/16",
+	"secondary-vpc-cidr": "10.1.0.0/16",
+	"secondary-subnet-cidr": "10.1.0.0/22",
+	"certificate": "certificate-secret-nm",
+	"certKey": "certificate-value - HASH"
+}

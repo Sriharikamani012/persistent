@@ -1,0 +1,12 @@
+{
+    "customer-name": "ncis",
+    "custom-dns": "*.gcp.lunapp.info",
+    "region": "us-central1",
+    "zone": "us-central1-c",
+    "gcp_project_id": "accenture-290518",
+    "vpc-cidr": "10.10.0.0/24",
+    "master-private-cluster-ipv4": "172.16.0.32/28",
+    "vpc-name": "vpc-name",
+    "vpc-subnet-name": "vpc-subnet-name", 
+    "objectStorageName": "asd"
+}
